@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hbd mas yoga!</title>
+    <link rel="stylesheet" href="hbd.css">
+</head>
+<body>
+    <div class="container">
+        <div class="balloons">
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+        </div>
+        <div class="card">
+            <h1>Sayang!</h1>
+            <p id="birthdayMessage">Oupsss!!</p>
+            <button onclick="alert('I love you,- Oshi')">Biar ga gabut dengerin</button>
+            <button onclick="window.location.href='gallery.html'">Lihat Galeri</button>
+        </div>
+    </div>
+    
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-button" id="closePopupButton">&times;</span>
+            <h2>play music sayang!</h2>
+            <button id="playMusicButton" class="button">ok!</button>
+            <audio id="birthdaySong">
+                <source src="music2.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        var closePopupButton = document.getElementById('closePopupButton');
+        var popup = document.getElementById('popup');
+        var playMusicButton = document.getElementById('playMusicButton');
+        var audio = document.getElementById('birthdaySong');
+        var birthdayMessage = document.getElementById('birthdayMessage');
+        var messages = [
+            "Hai Sayangku!",
+            "Happy Birthday Mas Yoga",
+            "Sehat selalu, biar bisa terus sama akuu",
+            "May your birthday be as wonderful as you are!!!",
+            "I love you!",
+            "And I miss you! T_T"
+        ];
+        var currentIndex = 0;
+
+        
+        function changeMessage() {
+            birthdayMessage.textContent = messages[currentIndex];
+            currentIndex = (currentIndex + 1) % messages.length;
+        }
+
+        
+        window.onload = function() {
+            popup.style.display = 'block';
+            setInterval(changeMessage, 5000); 
+
+        closePopupButton.addEventListener('click', function() {
+            popup.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == popup) {
+                popup.style.display = 'none';
+            }
+        });
+
+        playMusicButton.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+                playMusicButton.textContent = 'pause';
+            } else {
+                audio.pause();
+                playMusicButton.textContent = 'ok!';
+            }
+        });
+        function playSpecialMessage() {
+            var specialAudio = new Audio('special.mp3'); // Ganti 'special.mp3' dengan file backsound Anda
+            specialAudio.play();
+            // Gantilah dengan pesan khusus atau aksi lain yang Anda inginkan saat tombol diklik
+            alert('Ini adalah pesan spesial untukmu!');
+        }
+    }
+    </script>
+</body>
+</html>
